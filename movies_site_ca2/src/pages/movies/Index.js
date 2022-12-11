@@ -1,6 +1,8 @@
 import axios from '../../config';
 import { useState, useEffect } from 'react';
 import MovieCard from '../../components/MovieCard';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
 const Index = (props) => {
     const [ movies, setMovies ] = useState(null);
@@ -28,14 +30,15 @@ const Index = (props) => {
     };
 
     const moviesList = movies.map((movie) => {
-        return <MovieCard key={movie._id} movie={movie} authenticated={props.authenticated} callback={deleteCallback}/>;
+        return <Grid item xs={12} md={3} > <MovieCard key={movie._id} movie={movie} authenticated={props.authenticated} callback={deleteCallback}/></Grid>;
     });
 
     return (
-        <>
-            <h2>Movies</h2>
+        <Container fixed>
+        <Grid container spacing={3} >  
             { moviesList }
-        </>
+        </Grid>
+        </Container>
     );
 };
 

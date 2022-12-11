@@ -1,10 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+
 
 //import pages
 import Home from './pages/Home';
 import Moviesindex from './pages/movies/Index';
-// import FestivalsShow from './pages/festivals/Show';
+import MoviesShow from './pages/movies/Show';
 // import FestivalsCreate from './pages/festivals/Create';
 // import FestivalsEdit from './pages/festivals/Edit';
 
@@ -38,9 +41,9 @@ const App = () => {
     if(authenticated){
         protectedMovies = (
             <>
-                {/* <Route path="/movies/:id/edit" element={<FestivalsEdit />} />
-                <Route path="/movies/:id" element={<FestivalsShow />} />
-                <Route path="/movies/create" element={<FestivalsCreate />} /> */}
+                {/* <Route path="/movies/:id/edit" element={<FestivalsEdit />} /> */}
+                <Route path="/movies/:id" element={<MoviesShow />} />
+                {/* <Route path="/movies/create" element={<FestivalsCreate />} /> */}
             </>
         );
     }
@@ -52,7 +55,6 @@ const App = () => {
                         <Route path="/" element={<Home onAuthenticated={onAuthenticated} authenticated={authenticated} />} />
                         <Route path="/movies" element={<Moviesindex authenticated={authenticated} />} />
                         {protectedMovies}
-
                         <Route path="*" element={<PageNotFound />} />
                     </Routes>
         </Router>
