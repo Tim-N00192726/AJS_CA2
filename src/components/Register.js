@@ -105,7 +105,6 @@ const RegisterForm = (props) => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={submitForm}
-              component={Link} to='/movies'
             >
               Sign In
             </Button>
