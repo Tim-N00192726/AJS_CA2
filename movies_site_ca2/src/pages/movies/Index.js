@@ -3,9 +3,12 @@ import { useState, useEffect } from 'react';
 import MovieCard from '../../components/MovieCard';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 const Index = (props) => {
     const [ movies, setMovies ] = useState(null);
+
 
     useEffect(() => {
         axios.get('/movies')
@@ -19,7 +22,20 @@ const Index = (props) => {
     }, []);
 
 
-    if(!movies) return 'Loading...';
+    if(!movies) return <Grid 
+    style={{
+        paddingTop: '50vh'
+    }}
+    container
+    alignItems="center"
+    justifyContent="center"
+    >
+    <CircularProgress/>
+    </Grid>
+
+
+
+    
 
     const deleteCallback = (id) => {
         let moviesNew = movies.filter(movie => {
@@ -34,11 +50,16 @@ const Index = (props) => {
     });
 
     return (
+    <>
+        <br></br>
+        <br></br>
         <Container fixed>
         <Grid container spacing={3} >  
             { moviesList }
         </Grid>
         </Container>
+
+    </>
     );
 };
 

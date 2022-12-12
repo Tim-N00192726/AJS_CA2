@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 
 import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
+
 import Input from '@mui/material/Input';
 import Divider from '@mui/material/Divider';
 import Chip from '@mui/material/Chip';
@@ -11,8 +12,9 @@ import Chip from '@mui/material/Chip';
 
 
 
-const LoginForm = (props) => {
+const RegisterForm = (props) => {
     const [form, setForm] = useState({
+        name: "",
         email: "",
         password: ""
     });
@@ -30,7 +32,8 @@ const LoginForm = (props) => {
 
     const submitForm = () => {
 
-        axios.post('/users/login', {
+        axios.post('/users/register', {
+                name: form.name,
                 email: form.email,
                 password: form.password
             })
@@ -46,24 +49,34 @@ const LoginForm = (props) => {
              });
     };
 
-    // if(authenticated) return "You are logged in";
 
     return (
         <>
 
+        <Divider>
+            <Chip label="Register" />
+        </Divider>
 
-            <Box
+        <Box
           sx={{
-            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-           <Divider>
-            <Chip label="Sign In" />
-        </Divider>
           <Box component="form" sx={{ mt: 5 , width: '50vw'}}>
+          <Input
+              required
+              fullWidth
+              id="name"
+              label="Name"
+              name="name"
+              placeholder='Your name'
+              value={form.name}
+              onChange={handleForm}
+            />
+            <br></br>
+            <br></br>
             <Input
               required
               fullWidth
@@ -100,12 +113,8 @@ const LoginForm = (props) => {
             
           </Box>
         </Box>
-
-        <br></br>
-
-       
         </>
     );
 };
 
-export default LoginForm;
+export default RegisterForm;

@@ -1,12 +1,15 @@
 import LoginForm from "../components/LoginForm";
+import RegisterForm from "../components/Register";
 
 const Home = (props) => {
     return (
         <>
-            <h1>Home</h1>
 
             {(!props.authenticated) ? (
+                <>
                 <LoginForm onAuthenticated={props.onAuthenticated} />
+                <RegisterForm onAuthenticated={props.onAuthenticated}/>
+                </>
             ) : (
                 <p>You are logged in</p>
             )}

@@ -8,14 +8,22 @@ import Chip from '@mui/material/Chip';
 import StarIcon from '@mui/icons-material/Star';
 import {  useState } from 'react';
 import axios from 'axios';
+import Button from '@mui/material/Button';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteBtn from './DeleteBtn';
+import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 
 
 
 const SingleMovie = (props) => {
   const [ image, setImage ] = useState(null);
 
+
    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=bdd0bcd791c3edc6adf7af0e79b0df63&language=en-US&query=${props.movie.title}&page=1&year=${props.movie.release_date}`)
              .then((response) => {
+              console.log(response.data.results[0])
                  setImage(response.data.results[0].backdrop_path)
              })
              .catch((err) => {
@@ -63,7 +71,7 @@ const SingleMovie = (props) => {
             <Box
             sx={{
               position: 'absolute',
-              p: { xs: 2},
+              p: { xs: 5},
               bottom: 0,
               left: 0,
             }}
@@ -78,7 +86,48 @@ const SingleMovie = (props) => {
             <Typography variant="h6" color="white" >
               {props.movie.description}
             </Typography>
+            <br></br>
+            <Chip color='primary' icon={<ExpandCircleDownIcon />} label='Scroll down for More'/>
             </Box>
+            <Box 
+            sx={{
+              m: { xs: 5},
+              bottom: 0,
+              left: 0,
+            }}
+            >
+              <h2>Director</h2>
+              <Chip color='info' icon={<AccountCircleIcon />} variant='outlined'label={props.movie.director}/>
+            </Box>
+            <Box 
+            sx={{
+              m: { xs: 5},
+              bottom: 0,
+              left: 0,
+            }}
+            >
+              <h2>Actors</h2>
+              <Chip color='info' icon={<AccountCircleIcon />} variant='outlined'label={props.movie.actor1}/>
+              <Chip color='info' icon={<AccountCircleIcon />} variant='outlined'label={props.movie.actor2}/>
+              <Chip color='info' icon={<AccountCircleIcon />} variant='outlined'label={props.movie.actor3}/>
+              <Chip color='info' icon={<AccountCircleIcon />} variant='outlined'label={props.movie.actor4}/>
+
+            </Box>
+            <Button 
+                component={Link} 
+                to={`/movies/${props.movie._id}/edit`}
+                startIcon={<EditIcon />}
+                variant='outlined'
+                sx={{
+                  m: { xs: 5},
+                  bottom: 0,
+                  left: 0,
+                }}
+            >
+                Edit
+            </Button>
+            <DeleteBtn id={props.movie._id} resource='movies' callback={props.callback} />
+
         </Grid>     
         </Grid>
     </Paper>

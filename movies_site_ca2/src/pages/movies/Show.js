@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import SingleMovie from '../../components/SingleMovie';
 import { Grid } from '@mui/material';
 import { Container } from '@mui/system';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 const Show = (props) => {
     const { id } = useParams();
@@ -34,7 +36,17 @@ const Show = (props) => {
              });
     }, [token, id]);
 
-    if(!movie) return "Loading...";
+    if(!movie) return <Grid 
+    style={{
+        paddingTop: '50vh'
+    }}
+    container
+    alignItems="center"
+    justifyContent="center"
+    >
+    <CircularProgress/>
+    </Grid>
+    
 
 
     return (

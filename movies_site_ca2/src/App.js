@@ -8,8 +8,8 @@ import Grid from '@mui/material/Grid';
 import Home from './pages/Home';
 import Moviesindex from './pages/movies/Index';
 import MoviesShow from './pages/movies/Show';
-// import FestivalsCreate from './pages/festivals/Create';
-// import FestivalsEdit from './pages/festivals/Edit';
+import MovieCreate from './pages/movies/Create';
+import MoviesEdit from './pages/movies/Edit';
 
 import PageNotFound from './pages/PageNotFound';
 
@@ -41,9 +41,9 @@ const App = () => {
     if(authenticated){
         protectedMovies = (
             <>
-                {/* <Route path="/movies/:id/edit" element={<FestivalsEdit />} /> */}
+                <Route path="/movies/:id/edit" element={<MoviesEdit />} />
                 <Route path="/movies/:id" element={<MoviesShow />} />
-                {/* <Route path="/movies/create" element={<FestivalsCreate />} /> */}
+                <Route path="/movies/create" element={<MovieCreate />} />
             </>
         );
     }

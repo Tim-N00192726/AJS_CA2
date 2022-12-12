@@ -17,7 +17,7 @@ const PageNotFound = () => {
 
     return (
         <>
-            <h2>Page not found: {location.pathname}</h2>
+            <h2>You must be logged in to view {location.pathname}</h2>
             <p>Redirecting you to Home</p>
         </>
     );
