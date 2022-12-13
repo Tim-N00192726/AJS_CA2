@@ -21,7 +21,7 @@ const SingleMovie = (props) => {
   const [ image, setImage ] = useState(null);
 
 
-   axios.get(`https://api.themoviedb.org/3/search/movie?api_key=bdd0bcd791c3edc6adf7af0e79b0df63&language=en-US&query=${props.movie.title}&page=1&year=${props.movie.release_date}`)
+   axios.get(`https://api.themoviedb.org/3/search/movie?api_key=bdd0bcd791c3edc6adf7af0e79b0df63&language=en-US&query=${props.movie.title}&page=1`)
              .then((response) => {
               console.log(response.data.results[0])
                  setImage(response.data.results[0].backdrop_path)

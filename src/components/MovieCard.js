@@ -20,7 +20,7 @@ const MovieCard = (props) => {
 
 
 
-  axios.get(`https://api.themoviedb.org/3/search/movie?api_key=bdd0bcd791c3edc6adf7af0e79b0df63&language=en-US&query=${props.movie.title}&page=1&year=${props.movie.release_date}`)
+  axios.get(`https://api.themoviedb.org/3/search/movie?api_key=bdd0bcd791c3edc6adf7af0e79b0df63&language=en-US&query=${props.movie.title}&page=1`)
             .then((response) => {
                 setImage(response.data.results[0].poster_path)
             })
